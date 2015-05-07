@@ -1,0 +1,41 @@
+<html>
+<head>
+<meta charset="utf-8" />
+<!--在head插入以下link, script-->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				$("#dialog").dialog({
+					autoOpen : false,
+					show : {
+						effect : "blind",
+						duration : 500
+					},
+					hide : {
+						effect : "blind",
+						duration : 500
+					}
+				});
+				$("#opener").click(function() {
+					$("#dialog").dialog("open");
+				});
+			});
+		</script>
+		</head>
+		<body>
+        <!--以id=dialog的div包住隱藏表單-->		
+		<div id="dialog" title="title">
+		<form action="" method=post>
+		Description
+        <input type="text" name="newname" size=20 value="">
+        <input type=submit  value="submit">
+		</form>
+	    </div>
+		<!--將觸發按鈕的id命為opener-->
+		<button id="opener">
+		Add
+		</button>
+		</body>
+		</html>
