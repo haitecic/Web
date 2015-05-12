@@ -1,0 +1,34 @@
+<html>
+<head>
+<meta charset='utf-8'>
+</head>
+<body>
+
+    <form id="frm1" action="form_action.asp">
+        First name: <p id="hello" >爽爽的</p><br>
+        Last name: <p type="text" name="lname" value="Duck">耶耶的</p><br><br>
+        <p type="submit" value="Submit">開開的</p>
+    </form>
+
+    <p>Click "Try it" to display the value of each element in the form.</p>
+
+    <button onclick="myFunction()">Try it</button>
+
+    <p id="demo"></p>
+
+    <script>
+        function myFunction() {
+            //var x = document.getElementById("frm1");
+            //var text = "";
+            //var i;
+           // for (i = 0; i < x.length ; i++) { //frm1的子元素有三個<input>已就是說x.length將為3
+
+            //    text += x.elements[i].innerHTML + "<br>"; //三個子元素的Value分別為Donald Duck Submit
+
+            //}
+            document.getElementById("demo").innerHTML = document.getElementById("hello").innerHTML;
+        }
+    </script>
+
+</body>
+</html>
