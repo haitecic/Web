@@ -1,0 +1,40 @@
+<html>
+ <head>
+ <meta charset="utf-8">
+ <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script><!--引用jquery套件-->
+ </head>
+ <body>
+ <input type='button' value='change' onclick='change()' />
+ <p id="target">Ajax</p>
+ </body>
+ <script>
+ function change(){
+		var request_url = "ajax.php";
+		$.ajax({
+			url:request_url,  
+			data:{			 //The data to send(will be converted to a query string)
+				id:"change",
+			},
+			type:"POST",		 //Whether this is a POST or GET request
+			dataType:"text", //回傳的資料型態
+			//Code to run if the request succeeds. The response is passed to the function
+			success:function(str){
+			document.getElementById('target').innerHTML=str;
+				//alert(str);	
+//  str.title				
+			},
+			async:false,
+			//Code to run if the request fails; the raw request and status codes are passed to the function
+			error:function(xhr, status, errorThrown){
+				//alert("Sorry, there was a problem!");
+				console.log("Error: " + errorThrown);
+				console.log("Status: " + status);
+				console.dir( xhr );
+			},
+			complete:function( xhr, status ){
+				//alert("確定要跳出編輯頁面嗎?");
+			}
+		});
+		}
+</script>
+</html>

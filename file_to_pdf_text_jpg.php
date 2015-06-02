@@ -40,7 +40,7 @@ for($i=0; $i<$num; $i++)
   }
 
 //轉檔
-$attachment_path=$_SERVER['DOCUMENT_ROOT'] . "/project_management/application/assets/project_attachment/";
+$attachment_path="/var/www/html/project_management/application/assets/project_attachment/";
 for($j=0; $j<count($ready_to_convert); $j++)
     {
 	$old_file_name = $attachment_path . $ready_to_convert[$j]['dir_name'] . '/' . $ready_to_convert[$j]['filename'] . '.' .$ready_to_convert[$j]['type'];
@@ -58,7 +58,7 @@ for($j=0; $j<count($ready_to_convert); $j++)
 		}
 		
     //轉pdf(非pdf)
-	if($ready_to_convert[$j]['type']!='pdf')
+	if($ready_to_convert[$j]['type']!='pdf' && $ready_to_convert[$j]['type']!='flv' && $ready_to_convert[$j]['type']!='mp4' && $ready_to_convert[$j]['type']!='zip' && $ready_to_convert[$j]['type']!='msg' && $ready_to_convert[$j]['type']!='xps')
 		{
 		$pdf_file_name = $dir_path . '/' . $ready_to_convert[$j]['filename'] . '.pdf';
 		$unoconv_command = "sudo unoconv -f pdf -o $pdf_file_name $old_file_name";
@@ -66,6 +66,7 @@ for($j=0; $j<count($ready_to_convert); $j++)
 		}
 
 	//轉圖
+	/*
 	$var_return='0';//當pdf每一張都轉成png時，var_return會回傳'1'
 	for($x=0; $var_return==0; $x++)
 		{
@@ -85,7 +86,7 @@ for($j=0; $j<count($ready_to_convert); $j++)
 		        value ('{$ready_to_convert[$j]['dir_name']}', '{$ready_to_convert[$j]['attachment_id']}', '{$photofilename}')";
 		mysql_query($query);
 		}
-
+	*/
 	
 	//轉文字
 	$text_file_name = $dir_path . '/' . $ready_to_convert[$j]['filename'] . '.txt';
@@ -101,7 +102,8 @@ for($j=0; $j<count($ready_to_convert); $j++)
 	//存入資料庫
 	$text=file_get_contents($text_file_name);
 	$text = preg_replace('/\s+/', '', $text);
-	$query="update project_attachment set file_content='" . $text . "' where id='" . $ready_to_convert[$j]['attachment_id'] . "'";
+	$text = str_replace('"', "'", $text);
+	$query='update project_attachment set file_content="' . $text . '" where id="' . $ready_to_convert[$j]['attachment_id'] . '"';
 	mysql_query($query);
 	
 	}

@@ -1,7 +1,7 @@
 <?php
 //用glob，array_filter存取並區分資料夾以及檔案路徑
 
-$dir_files=glob('/var/www/html/project_management/application/assets/project_attachment/66*', GLOB_MARK);//GLOB_MARK：資料夾檔案名稱後面加上斜線
+$dir_files=glob('/var/www/html/project_management/application/assets/project_attachment/77*', GLOB_MARK);//GLOB_MARK：資料夾檔案名稱後面加上斜線
 $dirs = array_filter($dir_files, "isdir");
 $flies = array_filter($dir_files, "isfile");
 
