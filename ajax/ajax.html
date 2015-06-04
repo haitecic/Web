@@ -8,12 +8,31 @@
  <p id="target">Ajax</p>
  </body>
  <script>
+ var dog=['blue', 'red', 'yellow'];
+ var jsonString = {
+    "orderID": 12345,
+    "shopperName": "John Smith",
+    "shopperEmail": "johnsmith@example.com",
+    "contents": [
+        {
+            "productID": 34,
+            "productName": "SuperWidget",
+            "quantity": 1
+        },
+        {
+            "productID": 56,
+            "productName": "WonderWidget",
+            "quantity": 3
+        }
+    ],
+    "orderCompleted": true
+}
  function change(){
 		var request_url = "ajax.php";
 		$.ajax({
 			url:request_url,  
 			data:{			 //The data to send(will be converted to a query string)
-				id:"change",
+				id:jsonString
 			},
 			type:"POST",		 //Whether this is a POST or GET request
 			dataType:"text", //回傳的資料型態
